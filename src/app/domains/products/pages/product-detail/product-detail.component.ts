@@ -23,11 +23,11 @@ export default class ProductDetailComponent {
   readonly slug = input.required<string>();
 
   productRs = rxResource({
-    request: () => ({
+    params: () => ({
       slug: this.slug(),
     }),
-    loader: ({ request }) => {
-      return this.productService.getOneBySlug(request.slug);
+    stream: ({ params }) => {
+      return this.productService.getOneBySlug(params.slug);
     },
   });
 
@@ -40,9 +40,10 @@ export default class ProductDetailComponent {
       return previousValue?.value;
     },
   });
-  private productService = inject(ProductService);
-  private cartService = inject(CartService);
-  private metaTagsService = inject(MetaTagsService);
+
+  private readonly productService = inject(ProductService);
+  private readonly cartService = inject(CartService);
+  private readonly metaTagsService = inject(MetaTagsService);
 
   constructor() {
     effect(() => {

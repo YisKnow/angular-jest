@@ -22,9 +22,9 @@ import { rxResource } from "@angular/core/rxjs-interop";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ListComponent {
-  private cartService = inject(CartService);
-  private productService = inject(ProductService);
-  private categoryService = inject(CategoryService);
+  private readonly cartService = inject(CartService);
+  private readonly productService = inject(ProductService);
+  private readonly categoryService = inject(CategoryService);
   readonly slug = input<string>();
 
   categoriesResource = resource({
@@ -32,8 +32,8 @@ export default class ListComponent {
   });
 
   productsResource = rxResource({
-    request: () => ({ category_slug: this.slug() }),
-    loader: ({ request }) => this.productService.getProducts(request),
+    params: () => ({ category_slug: this.slug() }),
+    stream: ({ params }) => this.productService.getProducts(params),
   });
 
   addToCart(product: Product) {
