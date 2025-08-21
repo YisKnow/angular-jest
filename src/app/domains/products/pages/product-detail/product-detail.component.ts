@@ -5,18 +5,18 @@ import {
   linkedSignal,
   effect,
   ChangeDetectionStrategy,
-} from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ProductService } from '@shared/services/product.service';
-import { CartService } from '@shared/services/cart.service';
-import { rxResource } from '@angular/core/rxjs-interop';
-import { environment } from '@env/environment';
-import { MetaTagsService } from '@shared/services/meta-tags.service';
-import { RelatedComponent } from '@products/components/related/related.component';
+} from "@angular/core";
+import { CommonModule, NgOptimizedImage } from "@angular/common";
+import { ProductService } from "@shared/services/product.service";
+import { CartService } from "@shared/services/cart.service";
+import { rxResource } from "@angular/core/rxjs-interop";
+import { environment } from "@env/environment";
+import { MetaTagsService } from "@shared/services/meta-tags.service";
+import { RelatedComponent } from "@products/components/related/related.component";
 @Component({
-  selector: 'app-product-detail',
+  selector: "app-product-detail",
   imports: [CommonModule, NgOptimizedImage, RelatedComponent],
-  templateUrl: './product-detail.component.html',
+  templateUrl: "./product-detail.component.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ProductDetailComponent {

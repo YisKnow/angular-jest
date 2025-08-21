@@ -3,21 +3,21 @@ import {
   Component,
   inject,
   signal,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CartService } from '../../services/cart.service';
-import { RouterLinkWithHref, RouterLinkActive } from '@angular/router';
-import { SearchComponent } from '../search/search.component';
+} from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { CartService } from "../../services/cart.service";
+import { RouterLinkWithHref, RouterLinkActive } from "@angular/router";
+import { SearchComponent } from "../search/search.component";
 
 @Component({
-  selector: 'app-header',
+  selector: "app-header",
   imports: [
     CommonModule,
     RouterLinkWithHref,
     RouterLinkActive,
     SearchComponent,
   ],
-  templateUrl: './header.component.html',
+  templateUrl: "./header.component.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
@@ -28,10 +28,10 @@ export class HeaderComponent {
   total = this.cartService.total;
 
   toogleSideMenu() {
-    this.hideSideMenu.update(prevState => !prevState);
+    this.hideSideMenu.update((prevState) => !prevState);
   }
 
   toggleMenu() {
-    this.showMenu.update(prevState => !prevState);
+    this.showMenu.update((prevState) => !prevState);
   }
 }

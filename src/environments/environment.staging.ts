@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://staging-api.escuelajs.co',
+  apiUrl: "https://staging-api.escuelajs.co",
   domain:
-    'https://curso-angular-avanzado--storeapp-fea1f.us-central1.hosted.app',
+    "https://curso-angular-avanzado--storeapp-fea1f.us-central1.hosted.app",
 };

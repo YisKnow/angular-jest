@@ -1,8 +1,8 @@
-import { Injectable, computed, signal } from '@angular/core';
-import { Product } from '../models/product.model';
+import { Injectable, computed, signal } from "@angular/core";
+import { Product } from "../models/product.model";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CartService {
   cart = signal<Product[]>([]);
@@ -12,6 +12,6 @@ export class CartService {
   });
 
   addToCart(product: Product) {
-    this.cart.update(state => [...state, product]);
+    this.cart.update((state) => [...state, product]);
   }
 }

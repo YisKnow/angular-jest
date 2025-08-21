@@ -21,14 +21,16 @@
   <p>with init: {{ $withInit() }}</p>
   <button
     class="bg-blue-500 text-white px-4 py-2 rounded-md"
-    (click)="emitWithInit()">
+    (click)="emitWithInit()"
+  >
     emit with init
   </button>
 
   <p>without init: {{ $withoutInit() }}</p>
   <button
     class="bg-blue-500 text-white px-4 py-2 rounded-md"
-    (click)="emitWithoutInit()">
+    (click)="emitWithoutInit()"
+  >
     emit without init
   </button>
 </div>

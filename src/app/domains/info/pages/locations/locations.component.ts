@@ -4,21 +4,21 @@ import {
   Component,
   resource,
   signal,
-} from '@angular/core';
-import { environment } from '@env/environment';
+} from "@angular/core";
+import { environment } from "@env/environment";
 
 @Component({
-  selector: 'app-locations',
+  selector: "app-locations",
   imports: [],
-  templateUrl: './locations.component.html',
+  templateUrl: "./locations.component.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class LocationsComponent {
-  $origin = signal('');
+  $origin = signal("");
 
   constructor() {
     afterNextRender(() => {
-      navigator.geolocation.getCurrentPosition(position => {
+      navigator.geolocation.getCurrentPosition((position) => {
         console.log(position);
         const origin = `${position.coords.latitude},${position.coords.longitude}`;
         this.$origin.set(origin);
@@ -34,7 +34,7 @@ export default class LocationsComponent {
       const url = new URL(`${environment.apiUrl}/api/v1/locations`);
 
       if (request.origin) {
-        url.searchParams.set('origin', request.origin);
+        url.searchParams.set("origin", request.origin);
       }
 
       const response = await fetch(url.toString());

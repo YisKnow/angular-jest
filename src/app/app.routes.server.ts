@@ -1,16 +1,16 @@
 // app.routes.server.ts
-import { RenderMode, ServerRoute } from '@angular/ssr';
+import { RenderMode, ServerRoute } from "@angular/ssr";
 export const serverRoutes: ServerRoute[] = [
   {
-    path: '**',
+    path: "**",
     renderMode: RenderMode.Server,
   },
   {
-    path: 'locations',
+    path: "locations",
     renderMode: RenderMode.Client,
   },
   {
-    path: 'about',
+    path: "about",
     renderMode: RenderMode.Prerender,
   },
 ];

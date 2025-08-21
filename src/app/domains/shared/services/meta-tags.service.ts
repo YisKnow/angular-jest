@@ -1,6 +1,6 @@
-import { inject, Injectable } from '@angular/core';
-import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
-import { environment } from '@env/environment';
+import { inject, Injectable } from "@angular/core";
+import { Meta, MetaDefinition, Title } from "@angular/platform-browser";
+import { environment } from "@env/environment";
 
 export interface PageMetaData {
   title: string;
@@ -10,14 +10,14 @@ export interface PageMetaData {
 }
 
 const defaultMetaData: PageMetaData = {
-  title: 'Ng Store',
-  description: 'Ng Store is a store for Ng products',
-  image: '',
+  title: "Ng Store",
+  description: "Ng Store is a store for Ng products",
+  image: "",
   url: environment.domain,
 };
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class MetaTagsService {
   titleService = inject(Title);
@@ -31,34 +31,34 @@ export class MetaTagsService {
 
     const tags = this.generateMetaDefinitions(metaDataToUpdate);
 
-    tags.forEach(tag => this.metaService.updateTag(tag));
+    tags.forEach((tag) => this.metaService.updateTag(tag));
     this.titleService.setTitle(metaDataToUpdate.title);
   }
 
   private generateMetaDefinitions(metaData: PageMetaData): MetaDefinition[] {
     return [
       {
-        name: 'title',
+        name: "title",
         content: metaData.title,
       },
       {
-        name: 'description',
+        name: "description",
         content: metaData.description,
       },
       {
-        property: 'og:title',
+        property: "og:title",
         content: metaData.title,
       },
       {
-        property: 'og:description',
+        property: "og:description",
         content: metaData.description,
       },
       {
-        property: 'og:image',
+        property: "og:image",
         content: metaData.image,
       },
       {
-        property: 'og:url',
+        property: "og:url",
         content: metaData.url,
       },
     ];

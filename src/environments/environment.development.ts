@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3001',
-  domain: 'http://localhost:4200',
+  apiUrl: "https://api.escuelajs.co",
+  domain:
+    "https://curso-angular-avanzado--storeapp-fea1f.us-central1.hosted.app",
 };
