@@ -1,14 +1,10 @@
-import {
-  Spectator,
-  byTestId,
-  createRoutingFactory,
-} from "@ngneat/spectator/jest";
+import { Spectator, byTestId, createRoutingFactory } from '@ngneat/spectator/jest';
 
-import { generateFakeProduct } from "@shared/models/product.mock";
+import { generateFakeProduct } from '@shared/models/product.mock';
 
-import { ProductComponent } from "./product.component";
+import { ProductComponent } from './product.component';
 
-describe("ProductComponent", () => {
+describe('ProductComponent', () => {
   let spectator: Spectator<ProductComponent>;
 
   const createComponent = createRoutingFactory({
@@ -21,23 +17,23 @@ describe("ProductComponent", () => {
     spectator = createComponent({
       detectChanges: false,
     });
-    spectator.setInput("product", mockProduct);
+    spectator.setInput('product', mockProduct);
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     spectator.detectChanges();
     expect(spectator.component).toBeTruthy();
   });
 
-  it("should display product title", () => {
+  it('should display product title', () => {
     spectator.detectChanges();
-    const titleElement = spectator.query(byTestId("product-title"));
+    const titleElement = spectator.query(byTestId('product-title'));
     expect(titleElement).toHaveText(mockProduct.title);
   });
 
-  it("should emit a product when method is called", () => {
+  it('should emit a product when method is called', () => {
     // Arrange = Alistar entorno
-    const emitSpy = jest.spyOn(spectator.component.addToCart, "emit");
+    const emitSpy = jest.spyOn(spectator.component.addToCart, 'emit');
 
     // Act
     spectator.detectChanges();
@@ -47,13 +43,13 @@ describe("ProductComponent", () => {
     expect(emitSpy).toHaveBeenCalledWith(mockProduct);
   });
 
-  it("should emit a product when button is clicked", () => {
+  it('should emit a product when button is clicked', () => {
     // Arrange = Alistar entorno
-    const emitSpy = jest.spyOn(spectator.component.addToCart, "emit");
+    const emitSpy = jest.spyOn(spectator.component.addToCart, 'emit');
 
     // Act
     spectator.detectChanges();
-    spectator.click(byTestId("add-to-cart-button"));
+    spectator.click(byTestId('add-to-cart-button'));
 
     // Assert = Ver si todo esta correcto
     expect(emitSpy).toHaveBeenCalledWith(mockProduct);

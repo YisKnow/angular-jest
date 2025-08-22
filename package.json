@@ -12,7 +12,8 @@
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "serve:ssr:store": "node dist/store/server/server.mjs",
-    "apphosting:build": "FRAMEWORK_VERSION=19 apphosting-adapter-angular-build"
+    "apphosting:build": "FRAMEWORK_VERSION=19 apphosting-adapter-angular-build",
+    "postinstall": "npm run lint:fix"
   },
   "private": true,
   "dependencies": {

@@ -1,11 +1,11 @@
-import { createServiceFactory, SpectatorService } from "@ngneat/spectator/jest";
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 
-import { Product } from "@shared/models/product.model";
-import { generateFakeProduct } from "@shared/models/product.mock";
+import { Product } from '@shared/models/product.model';
+import { generateFakeProduct } from '@shared/models/product.mock';
 
-import { CartService } from "./cart.service";
+import { CartService } from './cart.service';
 
-describe("CartService", () => {
+describe('CartService', () => {
   let spectator: SpectatorService<CartService>;
   const createService = createServiceFactory(CartService);
 
@@ -13,16 +13,16 @@ describe("CartService", () => {
     spectator = createService();
   });
 
-  it("should create the service", () => {
+  it('should create the service', () => {
     expect(spectator.service).toBeDefined();
   });
 
-  it("should initialize with an empty cart", () => {
+  it('should initialize with an empty cart', () => {
     expect(spectator.service.cart()).toEqual([]);
     expect(spectator.service.total()).toBe(0);
   });
 
-  it("should add a product to the cart", () => {
+  it('should add a product to the cart', () => {
     const mockProduct: Product = generateFakeProduct();
 
     spectator.service.addToCart(mockProduct);
@@ -31,7 +31,7 @@ describe("CartService", () => {
     expect(spectator.service.total()).toBe(mockProduct.price);
   });
 
-  it("should add multiple products to the cart", () => {
+  it('should add multiple products to the cart', () => {
     const mockProduct1: Product = generateFakeProduct({ price: 100 });
 
     const mockProduct2: Product = generateFakeProduct({ price: 200 });
@@ -45,7 +45,7 @@ describe("CartService", () => {
     expect(spectator.service.total()).toBe(300);
   });
 
-  it("should handle adding products with zero price", () => {
+  it('should handle adding products with zero price', () => {
     const mockProduct: Product = generateFakeProduct({ price: 0 });
 
     spectator.service.addToCart(mockProduct);
@@ -53,7 +53,7 @@ describe("CartService", () => {
     expect(spectator.service.total()).toBe(0);
   });
 
-  it("should handle adding the same product multiple times", () => {
+  it('should handle adding the same product multiple times', () => {
     const mockProduct: Product = generateFakeProduct({ price: 100 });
 
     spectator.service.addToCart(mockProduct);
@@ -64,7 +64,7 @@ describe("CartService", () => {
     expect(spectator.service.total()).toBe(300);
   });
 
-  it("should handle adding products with negative prices", () => {
+  it('should handle adding products with negative prices', () => {
     const mockProduct: Product = generateFakeProduct({ price: -50 });
 
     spectator.service.addToCart(mockProduct);

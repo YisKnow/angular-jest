@@ -1,20 +1,16 @@
-import {
-  createHttpFactory,
-  HttpMethod,
-  SpectatorHttp,
-} from "@ngneat/spectator/jest";
+import { createHttpFactory, HttpMethod, SpectatorHttp } from '@ngneat/spectator/jest';
 
-import fetchMock, { enableFetchMocks } from "jest-fetch-mock";
+import fetchMock, { enableFetchMocks } from 'jest-fetch-mock';
 enableFetchMocks();
 
-import { environment } from "@env/environment";
+import { environment } from '@env/environment';
 
-import { CategoryService } from "./category.service";
+import { CategoryService } from './category.service';
 
-import { generateFakeCategory } from "../models/category.mock";
-import { Category } from "../models/category.model";
+import { generateFakeCategory } from '../models/category.mock';
+import { Category } from '../models/category.model';
 
-describe("CategoryService", () => {
+describe('CategoryService', () => {
   let spectator: SpectatorHttp<CategoryService>;
   const createHttp = createHttpFactory(CategoryService);
 
@@ -23,13 +19,13 @@ describe("CategoryService", () => {
     fetchMock.resetMocks();
   });
 
-  describe("getAll", () => {
+  describe('getAll', () => {
     const url = `${environment.apiUrl}/api/v1/categories`;
 
-    it("should get all categories successfully", () => {
+    it('should get all categories successfully', () => {
       const fakeCategories = [generateFakeCategory(), generateFakeCategory()];
 
-      spectator.service.getAll().subscribe((categories) => {
+      spectator.service.getAll().subscribe(categories => {
         expect(categories).toEqual(fakeCategories);
       });
 
@@ -37,8 +33,8 @@ describe("CategoryService", () => {
       req.flush(fakeCategories);
     });
 
-    it("should handle empty categories array", () => {
-      spectator.service.getAll().subscribe((categories) => {
+    it('should handle empty categories array', () => {
+      spectator.service.getAll().subscribe(categories => {
         expect(categories).toEqual([]);
       });
 
@@ -46,11 +42,11 @@ describe("CategoryService", () => {
       req.flush([]);
     });
 
-    it("should handle error when getting categories", () => {
-      const errorMessage = "Server error";
+    it('should handle error when getting categories', () => {
+      const errorMessage = 'Server error';
 
       spectator.service.getAll().subscribe({
-        error: (error) => {
+        error: error => {
           expect(error.status).toBe(500);
           expect(error.statusText).toBe(errorMessage);
         },
@@ -61,10 +57,10 @@ describe("CategoryService", () => {
     });
   });
 
-  describe("getAllPromise", () => {
+  describe('getAllPromise', () => {
     const url = `${environment.apiUrl}/api/v1/categories`;
 
-    it("should resolve with categories", async () => {
+    it('should resolve with categories', async () => {
       const fakeCategories = [generateFakeCategory(), generateFakeCategory()];
 
       // Mock global fetch
@@ -75,7 +71,7 @@ describe("CategoryService", () => {
       expect(fetch).toHaveBeenCalledWith(url);
     });
 
-    it("should resolve with empty array", async () => {
+    it('should resolve with empty array', async () => {
       const fakeCategories: Category[] = [];
 
       // Mock global fetch
@@ -86,26 +82,22 @@ describe("CategoryService", () => {
       expect(fetch).toHaveBeenCalledWith(url);
     });
 
-    it("should reject on fetch error", async () => {
-      const errorMessage = "Network Error";
+    it('should reject on fetch error', async () => {
+      const errorMessage = 'Network Error';
 
       // Mock global fetch to throw error
       fetchMock.mockRejectOnce(new Error(errorMessage));
 
-      await expect(spectator.service.getAllPromise()).rejects.toThrow(
-        errorMessage,
-      );
+      await expect(spectator.service.getAllPromise()).rejects.toThrow(errorMessage);
 
       expect(fetch).toHaveBeenCalledWith(url);
     });
 
-    it("should reject on invalid JSON", async () => {
+    it('should reject on invalid JSON', async () => {
       // Mock global fetch with invalid JSON
-      fetchMock.mockResponseOnce("Invalid JSON");
+      fetchMock.mockResponseOnce('Invalid JSON');
 
-      await expect(spectator.service.getAllPromise()).rejects.toThrow(
-        "Invalid JSON",
-      );
+      await expect(spectator.service.getAllPromise()).rejects.toThrow('Invalid JSON');
 
       expect(fetch).toHaveBeenCalledWith(url);
     });

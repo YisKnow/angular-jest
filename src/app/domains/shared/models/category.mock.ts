@@ -1,6 +1,6 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
-import { Category } from "./category.model";
+import { Category } from './category.model';
 
 export const generateFakeCategory = (data?: Partial<Category>): Category => ({
   id: faker.number.int(),

@@ -1,22 +1,17 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-} from "@angular/core";
-import { rxResource } from "@angular/core/rxjs-interop";
-import { ProductComponent } from "@products/components/product/product.component";
-import { ProductService } from "@shared/services/product.service";
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { ProductComponent } from '@products/components/product/product.component';
+import { ProductService } from '@shared/services/product.service';
 
 @Component({
-  selector: "app-related",
+  selector: 'app-related',
   imports: [ProductComponent],
-  templateUrl: "./related.component.html",
+  templateUrl: './related.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RelatedComponent {
   productService = inject(ProductService);
-  $slug = input.required<string>({ alias: "slug" });
+  $slug = input.required<string>({ alias: 'slug' });
 
   relatedProducts = rxResource({
     params: () => ({

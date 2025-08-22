@@ -1,33 +1,33 @@
-import { SpectatorPipe, createPipeFactory } from "@ngneat/spectator/jest";
+import { SpectatorPipe, createPipeFactory } from '@ngneat/spectator/jest';
 
-import { ReversePipe } from "./reverse.pipe";
+import { ReversePipe } from './reverse.pipe';
 
-describe("ReversePipe", () => {
+describe('ReversePipe', () => {
   let spectator: SpectatorPipe<ReversePipe>;
   const createPipe = createPipeFactory(ReversePipe);
 
-  it("should reverse a string", () => {
+  it('should reverse a string', () => {
     spectator = createPipe(`{{ 'Hello' | reverse }}`);
-    expect(spectator.element).toHaveText("olleH");
+    expect(spectator.element).toHaveText('olleH');
   });
 
-  it("should handle empty string", () => {
+  it('should handle empty string', () => {
     spectator = createPipe(`{{ '' | reverse }}`);
-    expect(spectator.element).toHaveText("");
+    expect(spectator.element).toHaveText('');
   });
 
-  it("should handle single character", () => {
+  it('should handle single character', () => {
     spectator = createPipe(`{{ 'A' | reverse }}`);
-    expect(spectator.element).toHaveText("A");
+    expect(spectator.element).toHaveText('A');
   });
 
-  it("should handle string with spaces", () => {
+  it('should handle string with spaces', () => {
     spectator = createPipe(`{{ 'Hello World' | reverse }}`);
-    expect(spectator.element).toHaveText("dlroW olleH");
+    expect(spectator.element).toHaveText('dlroW olleH');
   });
 
-  it("should handle string with special characters", () => {
+  it('should handle string with special characters', () => {
     spectator = createPipe(`{{ 'Hello@123!' | reverse }}`);
-    expect(spectator.element).toHaveText("!321@olleH");
+    expect(spectator.element).toHaveText('!321@olleH');
   });
 });

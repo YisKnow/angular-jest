@@ -1,8 +1,8 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
-import { generateFakeCategory } from "./category.mock";
+import { generateFakeCategory } from './category.mock';
 
-import { Product } from "./product.model";
+import { Product } from './product.model';
 
 export const generateFakeProduct = (data?: Partial<Product>): Product => ({
   id: faker.number.int(),
