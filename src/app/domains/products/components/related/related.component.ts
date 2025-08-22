@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-input-rename */
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductComponent } from '@products/components/product/product.component';
