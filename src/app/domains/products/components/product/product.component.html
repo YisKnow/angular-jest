@@ -1,4 +1,4 @@
-@let data = product();
+@let data = $product();
 
 <div class="group rounded-lg border">
   <a
@@ -16,7 +16,9 @@
     </div>
   </a>
   <div class="flex flex-col space-y-2 p-4">
-    <h3 class="text-sm text-gray-700">{{ data.title }}</h3>
+    <h3 data-testid="product-title" class="text-sm text-gray-700">
+      {{ data.title }}
+    </h3>
     <p class="text-lg font-medium text-gray-900">
       {{ data.price | currency: "$" : "symbol" : "1.0" }}
     </p>
@@ -24,6 +26,7 @@
       {{ data.creationAt | timeAgo }}
     </p>
     <button
+      data-testid="add-to-cart-button"
       class="text-black bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 w-full"
       (click)="addToCartHandler()"
     >

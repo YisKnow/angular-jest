@@ -23,7 +23,7 @@ import { SearchComponent } from "../search/search.component";
 export class HeaderComponent {
   hideSideMenu = signal(true);
   showMenu = signal(false);
-  private cartService = inject(CartService);
+  private readonly cartService = inject(CartService);
   cart = this.cartService.cart;
   total = this.cartService.total;
 

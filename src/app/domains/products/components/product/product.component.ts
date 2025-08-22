@@ -17,11 +17,13 @@ import { TimeAgoPipe } from "@shared/pipes/time-ago.pipe";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent {
-  readonly product = input.required<Product>();
+  readonly $product = input.required<Product>({
+    alias: "product",
+  });
 
   readonly addToCart = output<Product>();
 
   addToCartHandler() {
-    this.addToCart.emit(this.product());
+    this.addToCart.emit(this.$product());
   }
 }
